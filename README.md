@@ -1,4 +1,4 @@
-# Ansible Laptop Setup
+# Ansible Laptop Setup (Pop!_OS 22.04 LTS)
 
 Ansible playbook designed to automate laptop setup.
 
