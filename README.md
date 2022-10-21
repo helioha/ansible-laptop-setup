@@ -1,6 +1,6 @@
-# Ansible Laptop Setup (Pop!_OS 22.04 LTS)
+# Ansible Laptop Setup
 
-Ansible playbook designed to automate laptop setup.
+Ansible playbook designed to automate laptop setup (Pop!_OS 22.04 LTS).
 
 ## Pre-requisites 
 
