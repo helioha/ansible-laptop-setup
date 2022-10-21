@@ -16,37 +16,3 @@
   apt:
     name: vagrant
     state: present
-
-- name: Dependencies for vagrant-libvirt
-  become: true
-  apt:
-    name:
-      - vagrant
-      - ruby-libvirt
-    state: build-dep
-
-- name: Dependencies for vagrant-libvirt
-  become: true
-  apt:
-    name:
-      - qemu
-      - libvirt-daemon-system
-      - libvirt-clients
-      - ebtables
-      - dnsmasq-base
-      - libxslt-dev
-      - libxml2-dev
-      - libvirt-dev
-      - zlib1g-dev
-      - ruby-dev
-      - libguestfs-tools
-    state: present
-
-- name: Install vagrant-libvirt plugin
-  shell: vagrant plugin install vagrant-libvirt
-
-- name: Install vagrant-vbguest plugin
-  shell: vagrant plugin install vagrant-vbguest
-
-- name: Install vagrant-hostupdater plugin
-  shell: vagrant plugin install vagrant-hostsupdater
