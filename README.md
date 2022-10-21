@@ -6,7 +6,7 @@ Ansible playbook designed to automate laptop setup (Pop!_OS 22.04 LTS).
 
 Install python and pip
 ```bash
-sudo apt install python3 python3-pip
+sudo apt install python3 python3-pip -y
 ```
 
 Install ansible
