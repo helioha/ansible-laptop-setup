@@ -1,0 +1,41 @@
+---
+
+- name: Set variables
+  set_fact:
+    username: "{{ lookup('env', 'USER') }}"
+
+- name: Install Virtualbox DKMS prerequisites
+  become: true
+  apt:
+    name:
+      - build-essential
+      - "linux-headers-{{ansible_kernel}}"
+      - dkms
+    state: present
+  tags: virtualbox
+
+- name: Install Virtualbox
+  become: true
+  apt:
+    name:
+      - virtualbox
+      - virtualbox-dkms
+    state: present
+  tags: virtualbox
+
+- name: Ensure user is added to vboxusers
+  become: true
+  user:
+    name: "{{ username }}"
+    append: true
+    groups: vboxusers
+  tags: virtualbox
+
+- name: Ensure /usr/lib has the correct permissions
+  become: true
+  file:
+    path: /usr/lib
+    state: directory
+    owner: root
+    group: root
+  tags: virtualbox

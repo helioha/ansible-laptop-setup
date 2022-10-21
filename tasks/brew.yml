@@ -1,0 +1,37 @@
+---
+
+- name: Install Homebrew
+  shell: yes | ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  args:
+    executable: /bin/bash
+    chdir: "$HOME"
+    creates: /home/linuxbrew/.linuxbrew/bin/brew
+
+- name: Include homebrew bin folder to PATH
+  lineinfile:
+    path: ~/.bashrc
+    line: "export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:"
+
+- name: Install lazydocker
+  homebrew:
+    name: lazydocker
+    state: present
+    path: /home/linuxbrew/.linuxbrew/bin
+
+- name: Install lazygit
+  homebrew:
+    name: lazygit
+    state: present
+    path: /home/linuxbrew/.linuxbrew/bin
+
+- name: Install jless
+  homebrew:
+    name: jless
+    state: present
+    path: /home/linuxbrew/.linuxbrew/bin
+
+- name: Install Symfony CLI
+  homebrew:
+    name: symfony-cli/tap/symfony-cli
+    state: present
+    path: /home/linuxbrew/.linuxbrew/bin

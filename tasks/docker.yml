@@ -1,0 +1,59 @@
+---
+
+- name: Install dependencies
+  apt:
+    name:
+      - ca-certificates
+      - curl
+      - gnupg
+      - lsb-release
+    state: present
+
+- name: Download GPG key
+  become_user: true
+  shell: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+  args:
+    executable: /bin/bash
+
+- name: Processor architecture
+  shell: dpkg --print-architecture
+  register: architecture
+
+- name: Linux distribution distribution
+  shell: lsb_release -sc
+  register: lsb_release
+
+- name: Add repository
+  become: true
+  lineinfile:
+    path: /etc/apt/sources.list.d/docker.list
+    line: "deb [arch={{architecture.stdout}} signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu   {{lsb_release.stdout}} stable"
+    create: true
+
+- name: Install docker
+  become: true
+  apt:
+    update_cache: true
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-compose-plugin
+    state: present
+
+- name: Create docker group
+  group:
+    name: docker
+    state: present
+
+- name: Add current user to docker group
+  become: true
+  user:
+    name: helioha
+    groups: docker
+    append: true
+
+- name: Install Docksal
+  shell: bash <(curl -fsSL https://get.docksal.io)
+  args:
+    executable: /bin/bash

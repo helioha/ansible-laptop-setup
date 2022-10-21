@@ -1,0 +1,159 @@
+---
+
+- name: Add the flathub remote to the system installation
+  become: true
+  community.general.flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
+
+- name: Install Chrome
+  become: true
+  when: apps["chrome"]|bool == true
+  community.general.flatpak:
+    name: com.google.Chrome
+    state: present
+    remote: flathub
+
+- name: Install Spotify
+  become: true
+  when: apps["spotify"]|bool == true
+  community.general.flatpak:
+    name: com.spotify.Client
+    state: present
+    remote: flathub
+
+- name: Install Telegram
+  become: true
+  when: apps["telegram"]|bool == true
+  community.general.flatpak:
+    name: org.telegram.desktop
+    state: present
+    remote: flathub
+
+- name: Install VS Code
+  become: true
+  when: apps["vscode"]|bool == true
+  community.general.flatpak:
+    name: com.visualstudio.code
+    state: present
+    remote: flathub
+
+- name: Create VS Code alias
+  become: true
+  when: apps["vscode"]|bool == true
+  lineinfile:
+    path: ~/.bashrc
+    line: alias code="flatpak run com.visualstudio.code"
+
+- name: Install VLC
+  become: true
+  when: apps["vlc"]|bool == true
+  community.general.flatpak:
+    name: org.videolan.VLC
+    state: present
+    remote: flathub
+
+- name: Install Firefox
+  become: true
+  when: apps["firefox"]|bool == true
+  community.general.flatpak:
+    name: org.mozilla.firefox
+    state: present
+    remote: flathub
+
+- name: Install Zoom
+  become: true
+  when: apps["zoom"]|bool == true
+  community.general.flatpak:
+    name: us.zoom.Zoom
+    state: present
+    remote: flathub
+
+- name: Install GIMP
+  become: true
+  when: apps["gimp"]|bool == true
+  community.general.flatpak:
+    name: org.gimp.GIMP
+    state: present
+    remote: flathub
+
+- name: Install Flatseal
+  become: true
+  when: apps["flatseal"]|bool == true
+  community.general.flatpak:
+    name: com.github.tchx84.Flatseal
+    state: present
+    remote: flathub
+
+- name: Install Edge
+  become: true
+  when: apps["edge"]|bool == true
+  community.general.flatpak:
+    name: com.microsoft.Edge
+    state: present
+    remote: flathub
+
+- name: Install Slack
+  become: true
+  when: apps["slack"]|bool == true
+  community.general.flatpak:
+    name: com.slack.Slack
+    state: present
+    remote: flathub
+
+- name: Install Teams
+  become: true
+  when: apps["teams"]|bool == true
+  community.general.flatpak:
+    name: com.microsoft.Teams
+    state: present
+    remote: flathub
+
+- name: Install WhatsApp
+  become: true
+  when: apps["whatsapp"]|bool == true
+  community.general.flatpak:
+    name: io.github.mimbrero.WhatsAppDesktop
+    state: present
+    remote: flathub
+
+- name: Install Postman
+  become: true
+  when: apps["postman"]|bool == true
+  community.general.flatpak:
+    name: com.getpostman.Postman
+    state: present
+    remote: flathub
+
+- name: Install Audacity
+  become: true
+  when: apps["audacity"]|bool == true
+  community.general.flatpak:
+    name: org.audacityteam.Audacity
+    state: present
+    remote: flathub
+
+- name: Install Sublime Merge
+  become: true
+  when: apps["sublime_merge"]|bool == true
+  community.general.flatpak:
+    name: com.sublimemerge.App
+    state: present
+    remote: flathub
+
+- name: Install Flameshot
+  become: true
+  when: apps["flameshot"]|bool == true
+  community.general.flatpak:
+    name: org.flameshot.Flameshot
+    state: present
+    remote: flathub
+
+- name: Install WPS
+  become: true
+  when: apps["wps"]|bool == true
+  community.general.flatpak:
+    name: com.wps.Office
+    state: present
+    remote: flathub

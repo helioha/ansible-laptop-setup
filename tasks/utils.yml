@@ -1,0 +1,41 @@
+---
+
+- name: Install useful utilities
+  become: true
+  apt:
+    name:
+      - autojump
+      - bat
+      - build-essential
+      - curl
+      - exa
+      - fd-find
+      - flatpak
+      - fzf
+      - htop
+      - jc
+      - jq
+      - jq
+      - logrotate
+      - ncdu
+      - nfs-kernel-server
+      - pv
+      - rar
+      - ripgrep
+      - software-properties-gtk
+      - stacer
+      - tofrodos
+      - tree
+      - unrar
+      - unzip
+      - vim
+      - vlc
+      - wget
+      - zip
+    state: present
+
+- name: Configure autojump
+  lineinfile:
+    path: ~/.bashrc
+    line: ". /usr/share/autojump/autojump.sh"
+

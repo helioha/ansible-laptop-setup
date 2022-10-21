@@ -1,0 +1,13 @@
+---
+
+- name: Install tilix
+  become: true
+  apt:
+    name: tilix
+    state: present
+
+- name: Set tilix as the default terminal emulator
+  become: true
+  alternatives:
+    name: x-terminal-emulator
+    path: /usr/bin/tilix.wrapper

@@ -1,0 +1,27 @@
+---
+
+- name: Install git
+  become: true
+  apt:
+    name: git
+    state: present
+
+- name: Configure Git name
+  git_config:
+    name: user.name
+    value: "{{git_user_name}}"
+    scope: global
+  when: git_user_name != ""
+
+- name: Configure Git email
+  git_config:
+    name: user.email
+    value: "{{git_user_email}}"
+    scope: global
+  when: git_user_email != ""
+
+- name: Configure default editor for Git
+  git_config:
+    name: core.editor
+    value: vim
+    scope: global

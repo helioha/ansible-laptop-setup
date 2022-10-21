@@ -1,0 +1,56 @@
+---
+- hosts: localhost
+
+  vars:
+    git_user_email: "ha.helio@gmail.com"
+    git_user_name: "Helio Ha"
+    apps:
+      audacity: false
+      chrome: false
+      edge: false
+      firefox: false
+      flameshot: false
+      flatseal: false
+      gimp: false
+      postman: false
+      slack: false
+      spotify: false
+      sublime_merge: false
+      teams: false
+      telegram: false
+      vlc: false
+      vscode: false
+      whatsapp: false
+      wps: false
+      zoom: false
+
+  tasks:
+    - import_tasks: tasks/utils.yml
+      tags: ['utils']
+
+    - import_tasks: tasks/terminal.yml
+      tags: ['terminal']
+
+    - import_tasks: tasks/git.yml
+      tags: ['git']
+
+    - import_tasks: tasks/flatpak.yml
+      tags: ['flatpak']
+
+    - import_tasks: tasks/php.yml
+      tags: ['php']
+
+    - import_tasks: tasks/node.yml
+      tags: ['node']
+
+    - import_tasks: tasks/docker.yml
+      tags: ['docker']
+
+    - import_tasks: tasks/brew.yml
+      tags: ['brew']
+
+    - import_tasks: tasks/virtualbox.yml
+      tags: ['virtual-box']
+
+    - import_tasks: tasks/vagrant.yml
+      tags: ['vagrant']

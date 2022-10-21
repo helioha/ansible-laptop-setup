@@ -1,0 +1,51 @@
+---
+
+- name: Set variables
+  set_fact:
+    php_versions:
+      - "7.4"
+      - "8.1"
+
+- name: Add PPA repository for PHP
+  become: true
+  apt_repository: repo='ppa:ondrej/php'
+
+- name: Install multiple PHP versions
+  become: true
+  apt:
+    name:
+      - php{{item}}-cli
+      - php{{item}}-bcmath
+      - php{{item}}-curl
+      - php{{item}}-fpm
+      - php{{item}}-gd
+      - php{{item}}-intl
+      - php{{item}}-ldap
+      - php{{item}}-mbstring
+      - php{{item}}-mysql
+      - php{{item}}-opcache
+      - php{{item}}-redis
+      - php{{item}}-soap
+      - php{{item}}-sqlite3
+      - php{{item}}-xml
+      - php{{item}}-zip
+    state: present
+  loop: "{{ php_versions }}"
+
+- name: Install ext-json
+  become: true
+  apt:
+    name:
+      - php{{item}}-json
+    state: present
+  loop: "{{ php_versions }}"
+  when: item < "8.0"
+
+- name: Install xdebug
+  become: true
+  apt:
+    name: php-xdebug
+    state: present
+
+- import_role: name=geerlingguy.composer
+  become: true
