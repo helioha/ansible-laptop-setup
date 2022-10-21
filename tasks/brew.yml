@@ -1,7 +1,7 @@
 ---
 
 - name: Install Homebrew
-  shell: yes | ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  shell: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   args:
     executable: /bin/bash
     chdir: "$HOME"

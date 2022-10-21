@@ -1,10 +1,10 @@
 ---
 
 - name: Setup Node
-  become: true
+  become: yes
   become_flags: -i # Execute config files such as .profile (Ansible uses non-interactive login shells)
   become_method: sudo
-  become_user: helioha
+  become_user: "{{username}}"
   vars:
     allow_world_readable_tmpfiles: true
   block:
@@ -38,7 +38,7 @@
         chdir: "$HOME"
 
 - name: Install tldr
-  become_user: helioha
+  become_user: "{{username}}"
   shell: |
     source ~/.nvm/nvm.sh &&\
     npm install --global tldr

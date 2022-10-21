@@ -1,6 +1,7 @@
 ---
 
 - name: Install dependencies
+  become: true
   apt:
     name:
       - ca-certificates
@@ -10,7 +11,7 @@
     state: present
 
 - name: Download GPG key
-  become_user: true
+  become: true
   shell: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
   args:
     executable: /bin/bash
@@ -49,7 +50,7 @@
 - name: Add current user to docker group
   become: true
   user:
-    name: helioha
+    name: {{username}}
     groups: docker
     append: true
 

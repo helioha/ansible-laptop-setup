@@ -1,6 +1,6 @@
 ---
 
-- name: Install useful utilities
+- name: Install apt packages
   become: true
   apt:
     name:
