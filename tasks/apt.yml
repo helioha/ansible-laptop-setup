@@ -19,6 +19,7 @@
       - logrotate
       - ncdu
       - nfs-kernel-server
+      - openssh-server
       - pv
       - rar
       - ripgrep
